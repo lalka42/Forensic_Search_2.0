@@ -44,17 +44,19 @@ class ResultsActivity : AppCompatActivity() {
         */
         val sortOrder = "${DBHelper.COL_ID} ASC"
 
-        val searchBaseOS = "(${DBHelper.COL_BG_Win} = ? OR ${DBHelper.COL_BG_Mac} = ? OR ${DBHelper.COL_BG_Lin} = ?) AND "
-        val searchTargetOS = "(${DBHelper.COL_TG_Win} = ? OR ${DBHelper.COL_TG_Mac} = ? OR ${DBHelper.COL_TG_IOS} = ? OR ${DBHelper.COL_TG_And} = ? OR ${DBHelper.COL_TG_Lin} = ?) AND "
-        val searchArea = "(${DBHelper.COL_A_Net} = ? OR ${DBHelper.COL_A_Sea} = ? OR ${DBHelper.COL_A_Rec} = ? OR ${DBHelper.COL_A_Bre} = ?)"
+        val searchBaseOS = "(${DBHelper.COL_BG_Win} = ? AND ${DBHelper.COL_BG_Mac} = ? AND ${DBHelper.COL_BG_Lin} = ?) OR "
+        val searchTargetOS = "(${DBHelper.COL_TG_Win} = ? AND ${DBHelper.COL_TG_Mac} = ? AND ${DBHelper.COL_TG_IOS} = ? AND ${DBHelper.COL_TG_And} = ? AND ${DBHelper.COL_TG_Lin} = ?) OR "
+        val searchArea = "(${DBHelper.COL_A_Net} = ? AND ${DBHelper.COL_A_Sea} = ? AND ${DBHelper.COL_A_Rec} = ? AND ${DBHelper.COL_A_Bre} = ?)"
         val searchCase = searchBaseOS + searchTargetOS + searchArea
         Log.d("testt", searchCase)
+        val resArray = receivedSearchContent.map { it.toString() }.toTypedArray()
+        print(receivedSearchContent.map { it.toString() }.toTypedArray())
         val cursor = database?.query(
             DBHelper.TABLE_NAME,
             //projection,
             null,
             searchCase,
-            receivedSearchContent.map { it.toString() }.toTypedArray(),
+            resArray,
             null,
             null,
             sortOrder
@@ -69,7 +71,7 @@ class ResultsActivity : AppCompatActivity() {
                 val t_os = it.getString(it.getColumnIndexOrThrow(DBHelper.COL_TG))
                 val price = it.getString(it.getColumnIndexOrThrow(DBHelper.COL_PRICE))
                 val area = it.getString(it.getColumnIndexOrThrow(DBHelper.COL_S_AREA))
-                outputText.append("Название приложения: $name\n\n Цена: $price \n\n Область применения: $area \n\n $info\n Поддерживаемые ОС:\n $s_os\n Что может анализировать:\n $t_os\n\n---------------------------------\n" )
+                outputText.append("Название приложения: $name\n\n Цена: $price \n\n Область применения: $area \n\n $info\n Поддерживаемые ОС:\n $s_os\n Что может анализировать:\n $t_os\n\n---------------------------------\n\n" )
             }
 
         }
