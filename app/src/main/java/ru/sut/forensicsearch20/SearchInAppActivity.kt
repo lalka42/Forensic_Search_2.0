@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 
 class SearchInAppActivity : AppCompatActivity() {
 
@@ -28,6 +29,12 @@ class SearchInAppActivity : AppCompatActivity() {
     private lateinit var checkBoxCriteria3Option3: CheckBox
     private lateinit var checkBoxCriteria3Option4: CheckBox
     private lateinit var buttonSearch: Button
+
+    private val OS_LINUX = 1
+    private val OS_WINDOWS = 2
+    private val OS_MACOS = 4
+
+    private var selectedOS: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,16 +56,105 @@ class SearchInAppActivity : AppCompatActivity() {
         checkBoxCriteria3Option4 = findViewById(R.id.checkBoxCriteria3Option4)
         buttonSearch = findViewById(R.id.buttonSearch)
 
-        checkBoxCriteria1Option1.setOnCheckedChangeListener { _, isChecked ->
+        val dbrequest = StringBuilder("SELECT * FROM forensic_table WHERE ")
+
+
+
+        checkBoxCriteria1Option3.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // Действия при активации чекбокса
-                showToast("Критерий 1 Опция 1 выбрана")
+                selectedOS = selectedOS or OS_LINUX
+            } else {
+                selectedOS = selectedOS and OS_LINUX.inv()
             }
         }
 
+        checkBoxCriteria1Option1.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                selectedOS = selectedOS or OS_WINDOWS
+            } else {
+                selectedOS = selectedOS and OS_WINDOWS.inv()
+            }
+        }
+
+        checkBoxCriteria1Option2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                selectedOS = selectedOS or OS_MACOS
+            } else {
+                selectedOS = selectedOS and OS_MACOS.inv()
+            }
+        }
+
+        checkBoxCriteria2Option1.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option3.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option4.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option5.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option6.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria2Option7.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+
+            }
+        }
+
+        checkBoxCriteria3Option1.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                dbrequest.append("target_OS_support=1 AND ")
+            }
+        }
+
+        checkBoxCriteria3Option2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                dbrequest.append("target_OS_support=1 AND ")
+            }
+        }
+
+        checkBoxCriteria3Option3.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                dbrequest.append("target_OS_support=1 AND ")
+            }
+        }
+
+        checkBoxCriteria3Option4.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                dbrequest.append("target_OS_support=1 AND ")
+            }
+        }
+
+        dbrequest.append("1=1 ")
         buttonSearch.setOnClickListener {
             val intent = Intent(this, ResultsActivity::class.java)
             // Добавьте здесь логику формирования запроса
+            Log.d("SearchInAppActivityt", selectedOS.toString())
             startActivity(intent)
         }
     }
