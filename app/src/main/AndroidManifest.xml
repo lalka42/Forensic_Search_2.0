@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,19 +26,19 @@
         </activity>
         <activity
             android:name=".WebViewActivity"
-            android:label="WebView Activity"
+            android:label="Поиск в реестре"
             android:theme="@style/Theme.AppCompat">
 
         </activity>
         <activity
             android:name=".SearchInAppActivity"
-            android:label="Search Activity"
+            android:label="Поиск по базе"
             android:theme="@style/Theme.AppCompat">
 
         </activity>
         <activity
             android:name=".ResultsActivity"
-            android:label="Results Activity"
+            android:label="Результаты поиска"
             android:theme="@style/Theme.AppCompat">
 
         </activity>

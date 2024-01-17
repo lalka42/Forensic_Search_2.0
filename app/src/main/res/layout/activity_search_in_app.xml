@@ -9,6 +9,12 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Базовая система"
+            android:textStyle="bold"
+            android:textSize="18sp" />
         <!-- Критерий 1 -->
         <CheckBox
             android:id="@+id/checkBoxCriteria1Option1"
@@ -36,11 +42,18 @@
 
         <!-- Критерий 2 -->
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Целевая система"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
         <CheckBox
             android:id="@+id/checkBoxCriteria2Option1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MS Windows" />
+            android:text="MS Windows/NTFS" />
 
         <CheckBox
             android:id="@+id/checkBoxCriteria2Option2"
@@ -61,22 +74,11 @@
             android:text="Android" />
 
         <CheckBox
-            android:id="@+id/checkBoxCriteria2Option5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NTFS" />
-
-        <CheckBox
             android:id="@+id/checkBoxCriteria2Option6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FAT" />
+            android:text="FAT(exFAT, EXT2/3/4) и пр. ФС" />
 
-        <CheckBox
-            android:id="@+id/checkBoxCriteria2Option7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Linux" />
 
         <View
             android:layout_width="match_parent"
@@ -85,6 +87,13 @@
             android:layout_marginVertical="10dp"/>
 
         <!-- Критерий 3 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Область анализа"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
         <CheckBox
             android:id="@+id/checkBoxCriteria3Option1"
